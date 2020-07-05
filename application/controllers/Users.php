@@ -31,5 +31,8 @@
             ],$userID,
          );
       }
+      public function deleteUser($userID){
+         $this->user_model->deleteUser($userID);
+      }
    }
 ?>

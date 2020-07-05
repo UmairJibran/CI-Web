@@ -17,5 +17,9 @@
          $this->db->where('user_id',$id);
          $this->db->update('users',$info);
       }
+      public function deleteUser($id){
+         $this->db->where('user_id',$id);
+         $this->db->delete('users');
+      }
    }
 ?>
