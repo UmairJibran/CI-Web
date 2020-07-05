@@ -34,6 +34,22 @@
          $this->session->sess_destroy();
          redirect('home/index');
       }
+      public function signup(){
+         $this->form_validation->set_rules('username', 'Username', 'trim|required|min_length[4]');
+         $this->form_validation->set_rules('password', 'Password', 'trim|required|min_length[4]');
+         $this->form_validation->set_rules('email', 'Email', 'trim|required|min_length[7]');
+         if($this->form_validation->run() == FALSE){
+            $data = array(
+               'signup_errors' => validation_errors(),
+            );
+            $this->session->set_flashdata($data);
+            $data['main_view'] = "users/signup_view";
+            $this->load->view('layout/main',$data);
+         }else{
+            $data['main_view'] = "users/signup_view";
+            $this->load->view('layout/main',$data);
+         }
+      }
       // public function index(){
       //    $this->load->view('welcome_message');
       // }

@@ -1,5 +1,9 @@
 <h3>Sign Up</h3>
+
 <?php
+   if($this->session->flashdata('signup_errors')){
+      echo "<p class='alert alert-danger'>" . $this->session->flashdata('signup_errors') . "</p>";
+   }
    $lblAttributes = array('class' => 'sr-only');
    $properties = array('id'=>'singup_form','class'=>'form_horizontal');
    echo form_open('users/signup',$properties);
@@ -36,7 +40,7 @@
 <?php
    $btnAttributes = array(
       'class' => 'btn btn-outline-primary',
-      'value' => 'Log in',
+      'value' => 'Register',
       'name' => 'submit',
    );
    echo form_submit($btnAttributes);
