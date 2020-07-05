@@ -35,9 +35,10 @@
          redirect('home/index');
       }
       public function signup(){
+         $this->form_validation->set_rules('fullname', 'Full Name', 'trim|required|min_length[5]');
          $this->form_validation->set_rules('username', 'Username', 'trim|required|min_length[4]');
-         $this->form_validation->set_rules('password', 'Password', 'trim|required|min_length[4]');
          $this->form_validation->set_rules('email', 'Email', 'trim|required|min_length[7]');
+         $this->form_validation->set_rules('password', 'Password', 'trim|required|min_length[4]');
          if($this->form_validation->run() == FALSE){
             $data = array(
                'signup_errors' => validation_errors(),
@@ -46,8 +47,21 @@
             $data['main_view'] = "users/signup_view";
             $this->load->view('layout/main',$data);
          }else{
-            $data['main_view'] = "users/signup_view";
-            $this->load->view('layout/main',$data);
+            $username = $this->input->post('username');
+            $password = $this->input->post('password');
+            $email = $this->input->post('email');
+            $fullname = $this->input->post('fullname');
+            $this->user_model->createUser(
+               [
+                  'user_username' => $username,
+                  'user_password'	=> $password,
+                  'user_email'	=> $email,
+                  'user_full_name'	=> $fullname
+               ],
+            );
+            $this->session->set_flashdata('userReg',"You have created an account");
+            echo base_url();
+            redirect(base_url());
          }
       }
       // public function index(){

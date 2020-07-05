@@ -1,5 +1,10 @@
 <?php if(!$this->session->userdata('logged_in')): ?>
    <h3>User Login</h3>
+   <?php
+         if($this->session->flashdata('userReg')){
+            echo "<span class='alert alert-success'>" . $this->session->flashdata('userReg') . "</span><br>";
+         }
+      ?>
    <?php 
       $properties = array('id'=>'login_form','class'=>'form_horizontal');
       if($this->session->flashdata('errors')){

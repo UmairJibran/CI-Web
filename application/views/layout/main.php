@@ -28,10 +28,12 @@
             </li>
          </ul>
       </div>
+
    </nav>
    <div class="container container-fluid">
       <div class="row">
          <aside class="col-xl-3">
+
             <?php $this->load->view('users/login_view')?>
          </aside>
          <aside class="col-xl-9">

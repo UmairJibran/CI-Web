@@ -1,11 +1,9 @@
 <h3>Sign Up</h3>
 
 <?php
-   if($this->session->flashdata('signup_errors')){
-      echo "<p class='alert alert-danger'>" . $this->session->flashdata('signup_errors') . "</p>";
-   }
    $lblAttributes = array('class' => 'sr-only');
    $properties = array('id'=>'singup_form','class'=>'form_horizontal');
+   echo validation_errors("<p class='alert alert-danger'>");
    echo form_open('users/signup',$properties);
 ?>
 <div class="form-group mb-3">
