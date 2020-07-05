@@ -13,5 +13,9 @@
       public function createUser($info){
          $this->db->insert('users',$info);
       }
+      public function updateUser($info,$id){
+         $this->db->where('user_id',$id);
+         $this->db->update('users',$info);
+      }
    }
 ?>

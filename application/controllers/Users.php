@@ -19,5 +19,17 @@
             ],
          );
       }
+      public function updateUser($userID){
+         $username = 'batman';
+         $fullName = 'Mr. Wayne';
+         $password = 'I Love Rachel';
+         $this->user_model->updateUser(
+            [
+               'user_username' => $username,
+               'user_full_name' => $fullName,
+               'user_password' => $password,
+            ],$userID,
+         );
+      }
    }
 ?>
