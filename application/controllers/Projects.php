@@ -12,7 +12,8 @@
          $data['main_view'] = "projects/index";
          $this->load->view('layout/main',$data);
       }
-      public function details() {
+      public function details($prj_id) {
+         $data['project'] = $this->project_model->getAProject($prj_id);
          $data['main_view'] = "projects/details";
          $this->load->view('layout/main',$data);
       }
