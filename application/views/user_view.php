@@ -6,6 +6,6 @@
    <title>Our Users</title>
 </head>
 <body>
-   <?php foreach ($result as $user){echo $user->user_id."<br>";} ?>
+   <?php foreach ($result as $user){echo $user->user_full_name."<br>";} ?>
 </body>
 </html>
