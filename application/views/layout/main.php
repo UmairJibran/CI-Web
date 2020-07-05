@@ -22,7 +22,7 @@
                <a class="nav-link active" aria-current="page" href="<?php echo base_url()?>users/signup">Sign Up</a>
             </li>
             <li class="nav-item">
-               <a class="nav-link active" aria-current="page" href="<?php echo base_url()?>project">Projects</a>
+               <a class="nav-link active" aria-current="page" href="<?php echo base_url()?>projects">Projects</a>
             </li>
          </ul>
          <ul class="navbar-nav mr-2 mb-lg-0">
@@ -31,9 +31,15 @@
             </li>
          </ul>
       </div>
-
    </nav>
    <div class="container container-fluid">
+      <?php if($this->session->flashdata('error_project')):?>
+         <div class="alert alert-info">
+            <center>
+                  <?php echo $this->session->flashdata('error_project'); ?>
+            </center>
+         </div>
+      <?php endif; ?>
       <div class="row">
          <aside class="col-xl-3">
 
