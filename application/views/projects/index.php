@@ -1,5 +1,8 @@
 <h1>Projects</h1>
-<table class="table">
+<br>
+<a href="<?php echo base_url()."projects/create";?>" class="btn btn-outline-warning">Create a Project</a>
+<br><br>
+<table class="table table-hover">
    <thead>
       <th>#</th>
       <th>Name</th>

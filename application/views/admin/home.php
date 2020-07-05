@@ -1,1 +1,3 @@
-<h1>Admin Home</h1>
+<?php
+   redirect(base_url()."projects")
+?>

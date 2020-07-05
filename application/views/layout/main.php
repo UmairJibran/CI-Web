@@ -3,7 +3,7 @@
 <head>
    <meta charset="UTF-8">
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   <title>Document</title>
+   <title>Task Management System</title>
    <link rel="stylesheet" href="<?php echo base_url()?>/assets/css/bootstrap.min.css">
    <link rel="stylesheet" href="<?php echo base_url()?>/assets/css/master.css">
 </head>
@@ -18,9 +18,11 @@
          <li class="nav-item">
                <a class="nav-link active" aria-current="page" href="<?php echo base_url()?>home">Home</a>
             </li>
-            <li class="nav-item">
-               <a class="nav-link active" aria-current="page" href="<?php echo base_url()?>users/signup">Sign Up</a>
-            </li>
+            <?php if(!$this->session->userdata('logged_in')): ?>
+               <li class="nav-item">
+                  <a class="nav-link active" aria-current="page" href="<?php echo base_url()?>users/signup">Sign Up</a>
+               </li>
+            <?php endif; ?>
             <li class="nav-item">
                <a class="nav-link active" aria-current="page" href="<?php echo base_url()?>projects">Projects</a>
             </li>
@@ -48,7 +50,7 @@
             <?php $this->load->view('users/login_view')?>
          </aside>
          <aside class="col-xl-9">
-            <?php $this->load->view($main_view); ?>
+            <?php $this->load->view($main_view);?>
          </aside>
       </div>
    </div>

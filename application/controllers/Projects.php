@@ -17,5 +17,56 @@
          $data['main_view'] = "projects/details";
          $this->load->view('layout/main',$data);
       }
+      public function create(){
+         $this->form_validation->set_rules('prj_name', 'Project Name', 'trim|required|min_length[4]');
+         $this->form_validation->set_rules('prj_body', 'Project Description', 'trim|required|min_length[4]');
+         if($this->form_validation->run() == FALSE){
+            $data = array(
+               'project_adding' => validation_errors(),
+            );
+            $this->session->set_flashdata($data);
+            $data['main_view'] = "projects/create";
+            $this->load->view('layout/main',$data);
+         }else{
+            $prj_name = $this->input->post('prj_name');
+            $prj_body = $this->input->post('prj_body');
+            $data = array(
+               "prj_name" => $prj_name,
+               "prj_body" => $prj_body,
+               "user_id" => $this->session->userdata('user_id'),
+            );
+            $this->project_model->addProject($data);
+            redirect(base_url()."projects/");
+         }
+      }
+      public function update($prjID){
+         $this->form_validation->set_rules('prj_name', 'Project Name', 'trim|required|min_length[4]');
+         $this->form_validation->set_rules('prj_body', 'Project Description', 'trim|required|min_length[4]');
+         if($this->form_validation->run() == FALSE){
+            $data = array(
+               'project_update' => validation_errors(),
+            );
+            $this->session->set_flashdata($data);
+            $data['prjID'] = $prjID;
+            $data['main_view'] = "projects/update";
+            $this->load->view('layout/main',$data);
+         }else{
+            $prj_name = $this->input->post('prj_name');
+            $prj_body = $this->input->post('prj_body');
+            $data = array(
+               "prj_name" => $prj_name,
+               "prj_body" => $prj_body,
+               "user_id" => $this->session->userdata('user_id'),
+            );
+            $this->project_model->updateProject($data,$prjID);
+            redirect(base_url()."projects/details/".$prjID);
+         }
+      }
+      public function delete($prjID){
+         if($this->project_model->deleteProject($prjID)){
+            redirect(base_url()."projects");
+         }
+
+      }
    }
 ?>
