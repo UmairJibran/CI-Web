@@ -10,6 +10,16 @@
          $tbl_usr = $this->db->get('users');
          return $tbl_usr->result();
       }
+      public function userLogin($username,$password){
+         $this->db->where('user_username',$username);
+         $this->db->where('user_password',$password);
+         $result = $this->db->get('users');
+         if($result->num_rows() > 0){
+            return $result->row(0)->user_id;
+         }else{
+            return false;
+         }
+      }
       public function createUser($info){
          $this->db->insert('users',$info);
       }

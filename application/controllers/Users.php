@@ -8,11 +8,31 @@
                'errors' => validation_errors(),
             );
             $this->session->set_flashdata($data);
-            print ($this->session->flashdata('errors'));
-            // redirect("home");
+            redirect("home");
+         }else{
+            $username = $this->input->post('username');
+            $password = $this->input->post('password');
+            $result = $this->user_model->userLogin($username, $password);
+            if($result){
+               $user_data = array(
+                  "username" => $username,
+                  "user_id" => $result,
+                  "logged_in" => TRUE
+               );
+               $this->session->set_userdata($user_data);
+               $this->session->set_flashdata('login_suc',"You are logged in");
+               $data['main_view'] = "admin/home";
+               $this->load->view('layout/main',$data);
+               // redirect('home/index');
+            }else{
+               $this->session->set_flashdata('login_fail',"Invalid Credentials");
+               redirect('home/index');
+            }
          }
-         // $username = $this->input->post('username');
-         // $password = $this->input->post('password');
+      }
+      public function logout(){
+         $this->session->sess_destroy();
+         redirect('home/index');
       }
       // public function index(){
       //    $this->load->view('welcome_message');
