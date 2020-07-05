@@ -8,7 +8,16 @@
    <link rel="stylesheet" href="<?php echo base_url()?>/assets/css/master.css">
 </head>
 <body>
-   <?php $this->load->view($main_view); ?>
+   <div class="container container-fluid">
+      <div class="row">
+         <aside class="col-xl-3">
+            <?php $this->load->view('users/login_view')?>
+         </aside>
+         <aside class="col-xl-9">
+            <?php $this->load->view($main_view); ?>
+         </aside>
+      </div>
+   </div>
    <script src="<?php echo base_url()?>/assets/js/jquery.js"></script>
    <script src="<?php echo base_url()?>/assets/js/bootstrap.min.js"></script>
 </body>
